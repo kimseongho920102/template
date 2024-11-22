@@ -25,12 +25,6 @@ jobs:
             restore-keys: |
                ${{ runner.os}}-node-
 
-        - name: Set up
-          working-directory : remix
-          run: |
-            git config user.name "kimseongho920102"
-            git config user.email "kimseongho920102@github.com"
-
         - name : npm install
           working-directory : remix
           run : npm install
@@ -38,6 +32,13 @@ jobs:
         - name : npm build
           working-directory : remix
           run : npm run build
+
+        - name : deploy
+          env :
+            GIT_USER: ${{ github.actor}}
+            GIT_TOKEN: ${secrets.DEPLOY_TOKEN}
+          run : |
+            npx gh-pages -d build --repo https://$GIT_USER:$GIT_TOKEN@github.com/${{github.repository}}.git
 
         - name: 📂 Deploy to Server
           run : |
