@@ -26,4 +26,5 @@ jobs:
           env :
               AUTH_TOKEN : ${{ secrets.DEPLOY_TOKEN }}
           run : |
+            cd remix
             npm run deploy
