@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Set up
+          working-directory : remix
           run: |
             git config user.name "Action"
             git config user.email "actions@github.com"
