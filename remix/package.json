@@ -6,7 +6,7 @@
   "homepage": "https://kimseongho920102.github.io/template",
   "scripts": {
     "build": "remix build",
-    "dev": "concurrently \"npm run sass\" \"remix dev\"",
+    "dev": "remix dev",
     "start": "remix-serve build",
     "typecheck": "tsc",
     "sass": "sass --watch app/:app/",
