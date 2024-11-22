@@ -42,7 +42,6 @@ jobs:
         - name: deploy
           working-directory: remix
           env:
-            GIT_USER: ${{ github.actor }}
-            GIT_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+            GIT_SSH_COMMAND: sh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no
           run: |
-            npx gh-pages -d build --repo https://$GIT_USER:$GIT_TOKEN@github.com/${{ github.repository }}.git
+            npx gh-pages -d build --repo git@github.com:${{ github.repository }}.git
