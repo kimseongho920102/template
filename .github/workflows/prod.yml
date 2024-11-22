@@ -22,9 +22,6 @@ jobs:
           chmod 644 ~/.ssh/id_rsa.pub
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
-      - name: SSH TEST
-        run: ssh -T git@github.com
-
       - name: Install dependencies
         working-directory: remix
         run: npm install
