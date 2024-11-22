@@ -16,11 +16,11 @@ jobs:
 
         - name : npm install
           working-directroy : remix
-          uses : npm install
+          run : npm install
 
         - name : npm build
           working-directroy : remix
-          uses : npm run build
+          run : npm run build
 
         - name: 📂 Deploy to Server
           env :
