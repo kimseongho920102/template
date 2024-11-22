@@ -11,11 +11,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-        - name: Set up
-          working-directory : remix
-          run: |
-            git config user.name "Action"
-            git config user.email "actions@github.com"
+
 
         - name: Checkout Code
           uses: actions/checkout@v3
@@ -28,6 +24,12 @@ jobs:
             restore-keys: |
                ${{ runner.os}}-node-
 
+        - name: Set up
+          working-directory : remix
+          run: |
+            git config user.name "Action"
+            git config user.email "actions@github.com"
+            
         - name : npm install
           working-directory : remix
           run : npm install
