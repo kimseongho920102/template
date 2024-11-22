@@ -11,7 +11,7 @@
     "typecheck": "tsc",
     "sass": "sass --watch app/:app/",
     "predeploy": "npm run build",
-    "deploy": "main -d build"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
