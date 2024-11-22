@@ -26,7 +26,4 @@ jobs:
           env :
               AUTH_TOKEN : ${{ secrets.DEPLOY_TOKEN }}
           run : |
-            cd remix
-            npm start
-            echo "Deploying application"
-            curl -H "Authorizition: Bearer $AUTH_TOKEN" https://kimseongho920102.github.io/template
+            npm run deploy
