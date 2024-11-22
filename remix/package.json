@@ -10,8 +10,8 @@
     "start": "remix-serve build",
     "typecheck": "tsc",
     "sass": "sass --watch app/:app/",
-    "predeploy":"npm run build",
-    "deploy" :"gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "main -d build"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
@@ -42,6 +42,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
+    "remix": "^2.14.0",
     "yup": "^1.0.2"
   },
   "devDependencies": {
