@@ -14,11 +14,19 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v3
 
+        - name : npm install
+          working-directroy : remix
+          uses : npm install
+
+        - name : npm build
+          working-directroy : remix
+          uses : npm run build
+
         - name: 📂 Deploy to Server
           env :
               AUTH_TOKEN : ${{ secrets.DEPLOY_TOKEN }}
           run : |
-            npm install
+            cd remix
             npm start
             echo "Deploying application"
             curl -H "Authorizition: Bearer $AUTH_TOKEN" https://kimseongho920102.github.io/template
