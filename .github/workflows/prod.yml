@@ -1,0 +1,26 @@
+name: Prod deploy
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+        - name : Manually initialize submoduels
+          run : |
+            git submodule init
+            git submodule update --recursive
+        - name: Checkout Code
+          uses: actions/checkout@v4
+
+        - name: 📂 Deploy to Server
+          env :
+              AUTH_TOKEN : ${{ secrets.DEPLOY_TOKEN }}
+          run : |
+            echo "Deploying application"
+            curl -H "Authorizition: Bearer $AUTH_TOKEN" https://kimseongho920102.github.io/template
