@@ -16,7 +16,7 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v3
           with:
-            token: ${{secrets.DEPLOY_TOKEN}}
+            token: ${{secrets.GITHUB_TOKEN}}
         - name: cache node
           uses: actions/cache@v3
           with:
@@ -25,23 +25,23 @@ jobs:
             restore-keys: |
                ${{ runner.os}}-node-
 
-        - name : npm install
-          working-directory : remix
-          run : npm install
+        - name: npm install
+          working-directory: remix
+          run: npm install
 
-        - name : npm build
-          working-directory : remix
+        - name: npm build
+          working-directory: remix
           run : npm run build
 
-        - name : deploy
-          working-directory : remix
-          env :
+        - name: deploy
+          working-directory: remix
+          env:
             GIT_USER: ${{ github.actor}}
-            GIT_TOKEN: ${secrets.DEPLOY_TOKEN}
-          run : |
-            npx gh-pages -d build --repo https://$GIT_USER:$GIT_TOKEN@github.com/${{github.repository}}.git
+            GIT_TOKEN: ${{secrets.DEPLOY_TOKEN}}
+          run: |
+            npx gh-pages -d build --repo https://$GIT_USER:$GIT_TOKEN@github.com/${{ github.repository }}.git
 
         - name: 📂 Deploy to Server
-          run : |
+          run: |
             cd remix
             npm run deploy
