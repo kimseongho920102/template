@@ -25,12 +25,12 @@ jobs:
           npm run build
 
       - name: Set up SSH
-        if: env.DEPLOY_WITH_SSH == 'true'
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+        
 
       - name: Deploy to GitHub Pages
         working-directory: remix
