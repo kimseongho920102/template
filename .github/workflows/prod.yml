@@ -18,11 +18,17 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Install dependencies and Build
+      - name: Install dependencies
+        working-directory: remix # 프로젝트 디렉터리
         run: |
           npm install
+
+      - name: Build Project
+        working-directory: remix # 프로젝트 디렉터리
+        run: |
           npm run build
 
       - name: Deploy to GitHub Pages
+        working-directory: remix # 프로젝트 디렉터리
         run: |
           npx gh-pages -d build --repo https://github.com/${{ github.repository }}.git
