@@ -29,4 +29,5 @@ jobs:
       - name: Deploy to GitHub Pages
         working-directory: remix
         run: |
+          npx gh-pages -d public --add
           npx gh-pages -d public/build --repo https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
