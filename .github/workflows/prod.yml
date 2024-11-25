@@ -26,8 +26,14 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"        
 
-      - name: Deploy to GitHub Pages
-        working-directory: remix
+      - name: Set up SSH
         run: |
-          npx gh-pages -d public --add
-          npx gh-pages -d public/build --repo https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+        
+      - name: Deploy to GitHub Pages
+        run: |
+          npx gh-pages -d public --repo git@github.com:${{ github.repository }}.git
+        
