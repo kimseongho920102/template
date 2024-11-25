@@ -28,7 +28,14 @@ jobs:
         run: |
           npm run build
 
-      - name: Deploy to GitHub Pages
-        working-directory: remix # 프로젝트 디렉터리
+      - name: Set up SSH
         run: |
-          npx gh-pages -d build --repo https://github.com/${{ github.repository }}.git
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
+      - name: Deploy to GitHub Pages
+        run: |
+          npx gh-pages -d build --add
+          npx gh-pages -d build --repo git@github.com:${{ github.repository }}.git
